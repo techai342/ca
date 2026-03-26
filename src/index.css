@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-calc-bg: #151619;
+  --color-calc-display: #1c1e22;
+  --color-calc-btn: #2a2d32;
+  --color-calc-btn-hover: #3a3e44;
+  --color-calc-accent: #f27d26;
+  --color-calc-accent-hover: #ff8e3c;
+  --color-calc-text: #ffffff;
+  --color-calc-text-dim: #8e9299;
+}
+
+@layer base {
+  body {
+    @apply bg-[#0a0a0a] text-calc-text font-sans antialiased;
+  }
+}
