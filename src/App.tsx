@@ -81,8 +81,8 @@ const CalcButton = ({
   };
 
   return (
-    <div className={cn('flex flex-col items-center gap-0.5', span === 2 && 'col-span-2')}>
-      <div className="flex justify-between w-full px-1 text-[8px] sm:text-[9px] font-bold uppercase tracking-tighter h-3">
+    <div className={cn('flex flex-col items-center w-full h-full', span === 2 && 'col-span-2')}>
+      <div className="flex justify-between w-full px-1 text-[8px] sm:text-[9px] font-bold uppercase tracking-tighter h-3 mb-0.5 shrink-0">
         <span className={cn(labelTopColor)}>{labelTop}</span>
         <span className={cn(labelAlphaColor)}>{labelAlpha}</span>
       </div>
@@ -90,7 +90,7 @@ const CalcButton = ({
         whileTap={{ scale: 0.92 }}
         onClick={onClick}
         className={cn(
-          'w-full h-10 sm:h-11 rounded-lg flex items-center justify-center transition-colors duration-200 shadow-md border-b-2 border-black/20',
+          'w-full flex-1 rounded-lg flex items-center justify-center transition-colors duration-200 shadow-md border-b-2 border-black/20',
           variants[variant],
           className
         )}
@@ -356,27 +356,27 @@ export default function App() {
   }, [display, cursorPos]);
 
   return (
-    <div className="min-h-[100dvh] flex items-center justify-center p-0 sm:p-4 md:p-8 bg-[#1a1a1a] overflow-hidden">
+    <div className="min-h-[100dvh] w-full flex items-center justify-center p-0 sm:p-4 md:p-8 bg-[#1a1a1a] overflow-hidden">
       {/* Calculator Body */}
-      <div className="w-full h-[100dvh] sm:h-auto max-w-[400px] bg-[#373a40] sm:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-y-auto overflow-x-hidden border-0 sm:border-4 border-[#2a2d32] flex flex-col relative p-2 sm:p-4 pb-8 sm:pb-4">
+      <div className="w-full max-w-[400px] aspect-[9/16] max-h-[100dvh] bg-[#373a40] sm:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col relative p-3 sm:p-5 mx-auto border-y-4 sm:border-4 border-[#2a2d32]">
         
         {/* Brand & Solar Panel */}
-        <div className="flex justify-between items-start mb-4 px-4">
+        <div className="flex justify-between items-start mb-2 sm:mb-4 px-2 sm:px-4 shrink-0">
           <div className="flex flex-col">
-            <span className="text-white font-bold text-xl tracking-tighter italic">SAQIB</span>
-            <span className="text-white/60 text-[10px] font-bold">fx-991MS PRO</span>
-            <span className="text-white/40 text-[8px] font-bold tracking-widest">S-V.P.A.M.</span>
-            <span className="text-white/40 text-[8px] font-bold self-end -mt-2">3rd edition</span>
+            <span className="text-white font-bold text-lg sm:text-xl tracking-tighter italic">SAQIB</span>
+            <span className="text-white/60 text-[9px] sm:text-[10px] font-bold">fx-991MS PRO</span>
+            <span className="text-white/40 text-[7px] sm:text-[8px] font-bold tracking-widest">S-V.P.A.M.</span>
+            <span className="text-white/40 text-[7px] sm:text-[8px] font-bold self-end -mt-2">3rd edition</span>
           </div>
-          <div className="bg-[#1a1a1a] w-24 h-8 rounded-md border border-white/10 flex items-center justify-center gap-1">
-            {[1,2,3,4].map(i => <div key={i} className="w-4 h-6 bg-[#2a211a] rounded-sm opacity-50 shadow-inner" />)}
+          <div className="bg-[#1a1a1a] w-20 sm:w-24 h-6 sm:h-8 rounded-md border border-white/10 flex items-center justify-center gap-1">
+            {[1,2,3,4].map(i => <div key={i} className="w-3 sm:w-4 h-4 sm:h-6 bg-[#2a211a] rounded-sm opacity-50 shadow-inner" />)}
           </div>
         </div>
 
         {/* Display Screen */}
-        <div className="bg-[#c3d3d1] mx-2 rounded-lg p-3 mb-6 shadow-inner border-2 border-[#8a9a98] min-h-[110px] flex flex-col justify-between font-mono relative overflow-hidden">
+        <div className="bg-[#c3d3d1] mx-2 rounded-lg p-2 sm:p-3 mb-3 sm:mb-5 shadow-inner border-2 border-[#8a9a98] h-[18%] min-h-[80px] flex flex-col justify-between font-mono relative overflow-hidden shrink-0">
           {/* Status Bar */}
-          <div className="flex justify-between text-[10px] text-[#2a3a38] font-bold">
+          <div className="flex justify-between text-[9px] sm:text-[10px] text-[#2a3a38] font-bold">
             <div className="flex gap-2">
               <span className={cn(isShift ? 'opacity-100' : 'opacity-10')}>S</span>
               <span className={cn(isAlpha ? 'opacity-100' : 'opacity-10')}>A</span>
@@ -394,7 +394,7 @@ export default function App() {
               {/* Expression Line with Cursor */}
               <div 
                 ref={displayRef}
-                className="text-[#2a3a38] text-xl overflow-x-auto whitespace-nowrap scrollbar-hide text-left mt-2 flex items-center min-h-[28px]"
+                className="text-[#2a3a38] text-xl overflow-x-auto whitespace-nowrap scrollbar-hide text-left mt-1 sm:mt-2 flex items-center min-h-[28px]"
               >
                 {appMode === 'GRAPH' && <span className="mr-1">f(x)=</span>}
                 <span>{display.slice(0, cursorPos)}</span>
@@ -403,9 +403,9 @@ export default function App() {
               </div>
 
               {/* Result Line */}
-              <div className="text-[#1a2a28] text-3xl text-right font-bold tracking-tighter">
+              <div className="text-[#1a2a28] text-2xl sm:text-3xl text-right font-bold tracking-tighter">
                 {error ? (
-                  <span className="text-red-800 text-xl">{error}</span>
+                  <span className="text-red-800 text-lg sm:text-xl">{error}</span>
                 ) : (
                   result || (appMode === 'GRAPH' ? '' : '0')
                 )}
@@ -413,55 +413,57 @@ export default function App() {
             </>
           ) : appMode === 'CONV' ? (
             <div className="flex flex-col h-full justify-center">
-              <div className="text-[#2a3a38] text-sm font-bold mb-1">{convCategory}</div>
-              <div className="flex justify-between items-center text-[#1a2a28] text-xl font-bold">
+              <div className="text-[#2a3a38] text-xs sm:text-sm font-bold mb-1">{convCategory}</div>
+              <div className="flex justify-between items-center text-[#1a2a28] text-lg sm:text-xl font-bold">
                 <span>{convValue} {convFrom}</span>
-                <span className="text-sm">=</span>
+                <span className="text-xs sm:text-sm">=</span>
                 <span>{convResult}</span>
               </div>
             </div>
           ) : (
             <div className="flex flex-col h-full justify-center text-[#1a2a28]">
-              <div className="text-sm font-bold">Constants Mode</div>
-              <div className="text-xs">Select a constant from the menu</div>
+              <div className="text-xs sm:text-sm font-bold">Constants Mode</div>
+              <div className="text-[10px] sm:text-xs">Select a constant from the menu</div>
             </div>
           )}
         </div>
 
-        {/* Top Control Buttons */}
-        <div className="grid grid-cols-5 gap-2 mb-4 px-2">
-          <CalcButton 
-            onClick={() => setIsShift(!isShift)} 
-            className={cn('bg-[#4b5563] text-yellow-500 text-[10px]', isShift && 'ring-2 ring-yellow-500')}
-          >
-            SHIFT
-          </CalcButton>
-          <CalcButton 
-            onClick={() => setIsAlpha(!isAlpha)} 
-            className={cn('bg-[#4b5563] text-red-400 text-[10px]', isAlpha && 'ring-2 ring-red-400')}
-          >
-            ALPHA
-          </CalcButton>
-          
-          {/* D-Pad */}
-          <div className="col-span-1 flex flex-col items-center justify-center -mt-4 relative">
-            <div className="bg-[#2a2d32] w-16 h-16 rounded-full flex items-center justify-center shadow-lg border border-black/50 relative overflow-hidden">
-              <button onClick={moveHistoryUp} className="absolute top-0 w-full h-1/3 flex justify-center items-start pt-1 hover:bg-white/10 transition-colors"><ChevronUp size={14} className="text-white/70" /></button>
-              <button onClick={moveHistoryDown} className="absolute bottom-0 w-full h-1/3 flex justify-center items-end pb-1 hover:bg-white/10 transition-colors"><ChevronDown size={14} className="text-white/70" /></button>
-              <button onClick={moveCursorLeft} className="absolute left-0 h-full w-1/3 flex justify-start items-center pl-1 hover:bg-white/10 transition-colors"><ChevronLeft size={14} className="text-white/70" /></button>
-              <button onClick={moveCursorRight} className="absolute right-0 h-full w-1/3 flex justify-end items-center pr-1 hover:bg-white/10 transition-colors"><ChevronRight size={14} className="text-white/70" /></button>
-              <div className="absolute inset-0 m-auto w-6 h-6 rounded-full bg-[#1a1c20] pointer-events-none shadow-inner flex items-center justify-center">
-                <span className="text-[5px] text-white/30 font-bold">REPLAY</span>
+        {/* Keypad Area */}
+        <div className="flex-1 flex flex-col justify-between gap-2 px-1 pb-2">
+          {/* Top Control Buttons */}
+          <div className="grid grid-cols-5 grid-rows-1 gap-2 flex-[0.15]">
+            <CalcButton 
+              onClick={() => setIsShift(!isShift)} 
+              className={cn('bg-[#4b5563] text-yellow-500 text-[10px]', isShift && 'ring-2 ring-yellow-500')}
+            >
+              SHIFT
+            </CalcButton>
+            <CalcButton 
+              onClick={() => setIsAlpha(!isAlpha)} 
+              className={cn('bg-[#4b5563] text-red-400 text-[10px]', isAlpha && 'ring-2 ring-red-400')}
+            >
+              ALPHA
+            </CalcButton>
+            
+            {/* D-Pad */}
+            <div className="col-span-1 flex flex-col items-center justify-start relative z-10">
+              <div className="bg-[#2a2d32] w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center shadow-lg border border-black/50 relative overflow-hidden -mt-2 sm:-mt-4 shrink-0">
+                <button onClick={moveHistoryUp} className="absolute top-0 w-full h-1/3 flex justify-center items-start pt-1 hover:bg-white/10 transition-colors"><ChevronUp size={14} className="text-white/70" /></button>
+                <button onClick={moveHistoryDown} className="absolute bottom-0 w-full h-1/3 flex justify-center items-end pb-1 hover:bg-white/10 transition-colors"><ChevronDown size={14} className="text-white/70" /></button>
+                <button onClick={moveCursorLeft} className="absolute left-0 h-full w-1/3 flex justify-start items-center pl-1 hover:bg-white/10 transition-colors"><ChevronLeft size={14} className="text-white/70" /></button>
+                <button onClick={moveCursorRight} className="absolute right-0 h-full w-1/3 flex justify-end items-center pr-1 hover:bg-white/10 transition-colors"><ChevronRight size={14} className="text-white/70" /></button>
+                <div className="absolute inset-0 m-auto w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#1a1c20] pointer-events-none shadow-inner flex items-center justify-center">
+                  <span className="text-[4px] sm:text-[5px] text-white/30 font-bold">REPLAY</span>
+                </div>
               </div>
             </div>
+
+            <CalcButton labelTop="CLR" onClick={() => setIsModeMenuOpen(true)} className="bg-[#4b5563] text-white text-[10px] ring-1 ring-white/20">MODE</CalcButton>
+            <CalcButton onClick={clearAll} className="bg-[#4b5563] text-white text-[10px]">ON</CalcButton>
           </div>
 
-          <CalcButton labelTop="CLR" onClick={() => setIsModeMenuOpen(true)} className="bg-[#4b5563] text-white text-[10px] ring-1 ring-white/20">MODE</CalcButton>
-          <CalcButton onClick={clearAll} className="bg-[#4b5563] text-white text-[10px]">ON</CalcButton>
-        </div>
-
-        {/* Function Keys Grid */}
-        <div className="grid grid-cols-6 gap-x-1.5 gap-y-3 mb-6 px-1">
+          {/* Function Keys Grid */}
+          <div className="grid grid-cols-6 grid-rows-2 gap-x-1.5 gap-y-1.5 flex-[0.25]">
           <CalcButton labelTop="SOLVE" labelAlpha="=" onClick={() => handleInput('', '', '=')} variant="function">CALC</CalcButton>
           <CalcButton labelTop="d/dx" labelAlpha=":" onClick={() => handleInput('∫(', 'd/dx(', ':')} variant="function">∫dx</CalcButton>
           <CalcButton labelTop="x!" onClick={() => handleInput('^-1', '!')} variant="function">x⁻¹</CalcButton>
@@ -489,33 +491,34 @@ export default function App() {
           <CalcButton labelTop=")" labelAlpha="Y" onClick={() => handleInput(')', '', 'Y')} variant="function">)</CalcButton>
           <CalcButton labelTop="," labelAlpha="M" onClick={() => handleInput(',', '', 'M')} variant="function">,</CalcButton>
           <CalcButton labelTop="M-" labelAlpha="M" onClick={() => handleMemory('M+')} variant="function">M+</CalcButton>
-        </div>
+          </div>
 
-        {/* Main Keypad */}
-        <div className="grid grid-cols-5 gap-2.5 px-1">
-          <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '7') : handleInput('7')}>7</CalcButton>
+          {/* Main Keypad */}
+          <div className="grid grid-cols-5 grid-rows-5 gap-1.5 sm:gap-2.5 flex-[0.6]">
+            <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '7') : handleInput('7')}>7</CalcButton>
           <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '8') : handleInput('8')}>8</CalcButton>
           <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '9') : handleInput('9')}>9</CalcButton>
-          <CalcButton variant="control" className="bg-[#e11d48] text-sm" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev.slice(0, -1)) : backspace()}>DEL</CalcButton>
-          <CalcButton variant="control" className="bg-[#e11d48] text-sm" onClick={() => appMode === 'CONV' ? setConvValue('') : clearAll()}>AC</CalcButton>
+          <CalcButton variant="control" className="bg-[#e11d48] text-xs sm:text-sm" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev.slice(0, -1)) : backspace()}>DEL</CalcButton>
+          <CalcButton variant="control" className="bg-[#e11d48] text-xs sm:text-sm" onClick={() => appMode === 'CONV' ? setConvValue('') : clearAll()}>AC</CalcButton>
 
           <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '4') : handleInput('4')}>4</CalcButton>
           <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '5') : handleInput('5')}>5</CalcButton>
           <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '6') : handleInput('6')}>6</CalcButton>
-          <CalcButton variant="default" className="text-2xl" onClick={() => handleInput('×')}>×</CalcButton>
-          <CalcButton variant="default" className="text-2xl" onClick={() => handleInput('÷')}>÷</CalcButton>
+          <CalcButton variant="default" className="text-xl sm:text-2xl" onClick={() => handleInput('×')}>×</CalcButton>
+          <CalcButton variant="default" className="text-xl sm:text-2xl" onClick={() => handleInput('÷')}>÷</CalcButton>
 
           <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '1') : handleInput('1')}>1</CalcButton>
           <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '2') : handleInput('2')}>2</CalcButton>
           <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '3') : handleInput('3')}>3</CalcButton>
-          <CalcButton variant="default" className="text-2xl" onClick={() => handleInput('+')}>+</CalcButton>
-          <CalcButton variant="default" className="text-2xl" onClick={() => handleInput('-')}>-</CalcButton>
+          <CalcButton variant="default" className="text-xl sm:text-2xl" onClick={() => handleInput('+')}>+</CalcButton>
+          <CalcButton variant="default" className="text-xl sm:text-2xl" onClick={() => handleInput('-')}>-</CalcButton>
 
           <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '0') : handleInput('0')}>0</CalcButton>
           <CalcButton variant="numpad" onClick={() => appMode === 'CONV' ? setConvValue(prev => prev + '.') : handleInput('.')}>.</CalcButton>
           <CalcButton variant="numpad" labelTop="DRG" onClick={() => handleInput('EXP', 'DRG')}>EXP</CalcButton>
-          <CalcButton variant="numpad" labelTop="π" labelAlpha="e" onClick={() => handleInput('Ans', 'π', 'e')}>Ans</CalcButton>
-          <CalcButton variant="numpad" labelTop="≈" onClick={handleCalculate}>=</CalcButton>
+            <CalcButton variant="numpad" labelTop="π" labelAlpha="e" onClick={() => handleInput('Ans', 'π', 'e')}>Ans</CalcButton>
+            <CalcButton variant="numpad" labelTop="≈" onClick={handleCalculate}>=</CalcButton>
+          </div>
         </div>
 
         {/* Mode Menu Overlay */}
